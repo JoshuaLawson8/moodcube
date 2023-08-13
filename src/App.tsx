@@ -1,14 +1,31 @@
+import React from 'react';
 import './App.css';
-import Cube from './cube/Cube.js'
+import Cube from './cube/Cube'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import Planes from './cube/Planes';
+import Planes from './cube/Planes'
+import { useSelector, useDispatch } from 'react-redux'
+import { addPoint } from './features/pointsList/pointsListSlice';
+import { RootState } from './store';
+import { CubePoint } from './types';
 
 function App() {
+
+  const pointList = useSelector((state: RootState) => state.pointsListSlice.pointsList)
+  const dispatch = useDispatch()
+  const payload: CubePoint = {
+    uuid: "undefined",
+    x: 1,
+    y: 2,
+    z: 3,
+    blurb: '',
+    color: '#'
+  }
   return (
     <>
+      <div><button onClick={() => dispatch(addPoint(payload))}>Add Point</button></div>
       <div className='cubeHolder'>
-        <Canvas orthographic>
+        <Canvas>
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <mesh
