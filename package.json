@@ -15,10 +15,12 @@
     "react-redux": "^8.1.2",
     "react-scripts": "5.0.1",
     "three": "^0.155.0",
+    "troika-three-text": "^0.48.0-unicode.3",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "source-map-loader": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

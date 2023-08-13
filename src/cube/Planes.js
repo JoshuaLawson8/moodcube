@@ -1,23 +1,40 @@
 import React, { useRef, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { Edges } from "@react-three/drei"
-import { Color } from 'three'
+import { extend } from '@react-three/fiber'
+import { Text } from "troika-three-text";
+
+extend({ Text });
 
 function Planes(props) {
-    // This reference gives us direct access to the THREE.Mesh object
-    const ref = useRef()
-    // Hold state for hovered and clicked events
-    const [hovered, hover] = useState(false)
-    const [clicked, click] = useState(false)
-    // Subscribe this component to the render-loop, rotate the mesh every frame
-    //useFrame((state, delta) => (ref.current.rotation.x += delta))
-    // Return the view, these are regular Threejs elements expressed in JS
-
     return (
         <>
-            <mesh><gridHelper args={[1, 10, 'red', 'red']}></gridHelper></mesh >
-            <mesh rotation-x={11}><gridHelper args={[1, 10, 'green', 'green']}></gridHelper></mesh >
-            <mesh rotation-z={11}><gridHelper args={[1, 10, 'blue', 'blue']}></gridHelper></mesh >
+            <mesh><gridHelper args={[1, 10]}></gridHelper>
+                <mesh position={[-.7, .03, 0]}><text
+                    text={"negative"}
+                    fontSize={.05}
+                    color={'black'}
+                    textAlign={"left"}
+                    anchorX='10%'
+                    anchorY='1000'
+                ></text></mesh>
+            </mesh >
+            <mesh rotation-x={11}><gridHelper args={[1, 10]}></gridHelper></mesh >
+            <mesh position={[0, 0, -.55]}><text
+                text={"negative"}
+                fontSize={.05}
+                color={'black'}
+                textAlign={"left"}
+                anchorX='10%'
+                anchorY='1000'
+            ></text></mesh>
+            <mesh rotation-z={11}><gridHelper args={[1, 10]}></gridHelper></mesh >
+            <mesh position={[0, -.5, 0]}><text
+                text={"negative"}
+                fontSize={.05}
+                color={'black'}
+                textAlign={"left"}
+                anchorX='10%'
+                anchorY='1000'
+            ></text></mesh>
         </>
     )
 }
