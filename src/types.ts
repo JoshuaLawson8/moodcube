@@ -6,10 +6,10 @@ export type HEX = `#${string}`;
 export type Color = RGB | RGBA | HEX;
 
 export type CubePoint = {
-    uuid: String
-    x: Number
-    y: Number
-    z: Number
+    uuid: string
+    x: number
+    y: number
+    z: number
     blurb: string
     color: Color
 }
