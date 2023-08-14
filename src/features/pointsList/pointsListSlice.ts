@@ -18,11 +18,14 @@ export const pointsListSlice = createSlice({
         },
         deletePoint: (state, action: PayloadAction<string>) => {
             return { pointsList: state.pointsList.filter((point) => point.uuid !== action.payload) }
+        },
+        clearList: (state) => {
+            return { pointsList: [] }
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addPoint } = pointsListSlice.actions
+export const { addPoint, deletePoint, clearList } = pointsListSlice.actions
 
 export default pointsListSlice.reducer

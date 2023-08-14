@@ -1,34 +1,37 @@
-import React from 'react';
 import './App.css';
-import Cube from './cube/Cube'
+import Cube from './three_components/cube/Cube'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import Planes from './cube/Planes'
-import { useSelector, useDispatch } from 'react-redux'
-import { addPoint } from './features/pointsList/pointsListSlice';
-import { RootState } from './store';
-import { CubePoint } from './types';
+import Planes from './three_components/planes/Planes'
+import { useDispatch } from 'react-redux'
+import { addPoint, clearList } from './features/pointsList/pointsListSlice';
+
+import Points from './three_components/points/Points';
 
 function App() {
 
-  const pointList = useSelector((state: RootState) => state.pointsListSlice.pointsList)
   const dispatch = useDispatch()
-  const payload: CubePoint = {
-    uuid: "undefined",
-    x: 1,
-    y: 2,
-    z: 3,
-    blurb: '',
-    color: '#'
-  }
   return (
     <>
-      <div><button onClick={() => dispatch(addPoint(payload))}>Add Point</button></div>
+      <div><button onClick={() => dispatch(addPoint(
+        {
+          uuid: crypto.randomUUID(),
+          x: Math.random() - .5,
+          y: Math.random() - .5,
+          z: Math.random() - .5,
+          blurb: '', 
+          color: '#FF0000'
+        }
+      ))}>Add Point</button>
+        <button onClick={() => dispatch(clearList())}>Clear List</button>
+      </div>
+
       <div className='cubeHolder'>
         <Canvas>
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
-          <mesh
+          <Points />
+          <mesh 
             scale={2.5}
           >
             <Cube position={[.25, .25, .25]} size={[.5, .5, .5]} color={'green'} />
