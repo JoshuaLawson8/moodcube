@@ -1,12 +1,15 @@
 import './App.css';
 import Cube from './three_components/cube/Cube'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import Planes from './three_components/planes/Planes'
 import { useDispatch } from 'react-redux'
 import { addPoint, clearList } from './features/pointsList/pointsListSlice';
 
 import Points from './three_components/points/Points';
+import { useRef } from 'react';
+import Logo from './three_components/logo/Logo';
+import { DailyForm } from './three_components/overlay/DailyForm';
 
 function App() {
 
@@ -25,7 +28,6 @@ function App() {
       ))}>Add Point</button>
         <button onClick={() => dispatch(clearList())}>Clear List</button>
       </div>
-
       <div className='cubeHolder'>
         <Canvas>
           <ambientLight />
@@ -43,12 +45,14 @@ function App() {
             <Cube position={[-.25, -.25, .25]} size={[.5, .5, .5]} color={'red'} />
             <Cube position={[-.25, -.25, -.25]} size={[.5, .5, .5]} color={'blue'} />
             <Planes />
+            <Logo />
           </mesh>
           <OrbitControls />
         </Canvas>
       </div>
+      <DailyForm />
     </>
   );
 }
 
-export default App;
+export default App
